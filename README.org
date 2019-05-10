@@ -135,5 +135,6 @@ Copyright 2019 Vrije Universiteit Amsterdam, University of Amsterdam, Per Fuchs.
 
 * References
 
-Per Fuchs, Pieter Hijma, Clemens Grelck.  Implementing Stencil Problems in
-Chapel: An Experience Report.  CHIUW '19, Phoenix Arizona
+Per Fuchs, Pieter Hijma, Clemens Grelck. 2019. Implementing Stencil
+Problems in Chapel: An Experience Report. In /Proceedings of the ACM SIGPLAN 6th Chapel Implementers and Users Workshop (CHIUW '19) June 22, 2019, Phoenix AZ, USA/,
+New York, NY, USA.
