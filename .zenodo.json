@@ -1,0 +1,25 @@
+{
+    "description": "Heat Dissipation written in Chapel as part of the Chapel Implementers and Users Workshop (CHIUW '19)",
+    "license": "Apache-2.0",
+    "title": "heat-dissipation-chapel",
+    "upload_type": "software",
+    "creators": [{
+            "affiliation": "Vrije Universiteit Amsterdam",
+            "name": "Fuchs, Per"
+        },
+        {
+            "affiliation": "Vrije Universiteit Amsterdam",
+	    "name": "Hijma, Pieter"
+        {
+            "affiliation": "University of Amsterdam",
+            "name": "Grelck, Clemens"
+        }
+    ],
+    "access_right": "open",
+    "keywords": [
+        "stencil operation",
+        "Chapel",
+        "performance study",
+	"cluster computing"
+    ]
+}
