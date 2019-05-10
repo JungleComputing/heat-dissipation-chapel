@@ -1,0 +1,11 @@
+This version attempts to mitigate the NUMA effects by using MPI as a conduit.
+Unfortunately, it is not possible to get more than one core (2 hyperthreads) on
+a node.
+
+Use the script chpl2cluster to launch the application:
+
+./chpl2cluster -nl 1
+
+This will use the 'cluster.job' file to launch the script 'run' that in
+the end calls 'heat_dissipation' (which in the end calls
+'heat_dissipation_real').

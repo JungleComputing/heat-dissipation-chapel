@@ -1,0 +1,3 @@
+This version attempts to minimize the NUMA effects that hurts the performance
+with GASNet/ibv by controlling the number of threads to a maximum of 8 such
+that all computation and communication remains on one NUMA domain.

@@ -1,0 +1,2 @@
+This version uses the UDP conduit.  The performance is worse than the ibv
+conduit.

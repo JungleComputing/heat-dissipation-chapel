@@ -1,0 +1,6 @@
+This version removes the 'distributed array in a class' pattern that allows one
+to use the <=> swap operator on the objects effectively creating a pointer
+swap.  Instead, this version unrolls the loop by 2 and swaps the arrays by
+calling a procedure with the arrays swapped.
+
+This version does not improve the performance.

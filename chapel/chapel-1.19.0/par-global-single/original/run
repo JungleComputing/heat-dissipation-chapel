@@ -1,0 +1,29 @@
+#!/bin/bash
+
+IMAGE_DIR=$HEAT_DISSIPATION_CHAPEL/images/
+APP=./heat_dissipation
+ARGS=$*
+
+TASKS_PER_LOCALE="--dataParTasksPerLocale"
+
+for i in ${ARGS[@]}
+do
+    length=${#TASKS_PER_LOCALE}
+    if [ ${i:0:$length} = $TASKS_PER_LOCALE ]
+    then
+	nrthreads=${i:$((length + 1))}
+    fi
+done
+
+N=8192
+M=8192
+T_TYPE=plasma
+C_TYPE=pat2
+I=500
+E=0.01
+
+T=$IMAGE_DIR$T_TYPE"_"$N"x"$M".pgm"
+C=$IMAGE_DIR$C_TYPE"_"$N"x"$M".pgm"
+
+CHPL_RT_NUM_THREADS_PER_LOCALE=$nrthreads $APP --N $N --M $M --T $T --C $C --I $I --E $E $ARGS
+

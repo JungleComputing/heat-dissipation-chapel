@@ -1,0 +1,26 @@
+#!/bin/bash
+
+JOB_FILE=das5.job
+
+usage() {
+    echo "USAGE: $(basename $0) [-nl <nrLocales>]"
+    exit 1
+}
+
+if [ ! -e $JOB_FILE ]
+then
+    echo "$JOB_FILE does not exist"
+    exit 1
+fi
+
+if [ $# = 0 ]
+then
+    sbatch -N 1 $JOB_FILE
+elif [[ (($# == 2)) && $1 == "-nl" ]]
+then
+    nrLocales=$2
+    sbatch -N $nrLocales -n 16 $JOB_FILE -nl $nrLocales
+else
+    usage
+fi
+

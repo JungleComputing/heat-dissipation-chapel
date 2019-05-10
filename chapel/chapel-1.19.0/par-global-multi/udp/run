@@ -1,0 +1,21 @@
+#!/bin/bash
+
+IMAGE_DIR=$HEAT_DISSIPATION_CHAPEL/images/
+APP=./heat_dissipation
+ARGS=$*
+
+N=8192
+M=8192
+T_TYPE=plasma
+C_TYPE=pat2
+I=500
+E=0.01
+
+T=$IMAGE_DIR$T_TYPE"_"$N"x"$M".pgm"
+C=$IMAGE_DIR$C_TYPE"_"$N"x"$M".pgm"
+
+
+export GASNET_SPAWNFN=C
+export GASNET_CSPAWN_CMD="srun -N%N %C"
+
+$APP --N $N --M $M --T $T --C $C --I $I --E $E $ARGS

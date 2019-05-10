@@ -1,0 +1,139 @@
+#+title: Heat Dissipation in Chapel
+
+* Introduction
+
+This software contains various versions of a stencil computation
+represented by a simplified heat dissipation program.  This code
+belongs to the CHIUW '19 paper: "Implementing Stencil Problems in
+Chapel: An Experience Report" that is accepted for publication.  
+
+The paper has been written in two stages.  In the first stage, we
+implemented several versions, such as sequential versions, parallel
+versions on a single locale, parallel global view versions and
+parallel local view versions.  In the second stage, we received
+feedback from the Chapel team and implemented several versions to
+understand the performance issues that we perceived.
+
+More concretely, the versions on which the paper is based are all the
+C versions and for Chapel:
+
+- ~seq/*~
+- ~par-global-single/original~
+- ~par-global-multi/original~
+- ~par-local-multi/original~
+
+The versions that test the feedback from the Chapel team are:
+
+- ~par-global-multi/cache-remote~
+- ~par-global-multi/control-threads~
+- ~par-global-multi/local-access~
+- ~par-global-multi/mpi~
+- ~par-global-multi/ofi~
+- ~par-global-multi/segment-fast~
+- ~par-global-multi/swap-in-proc~
+- ~par-global-multi/udp~
+- ~par-local-multi/control-threads~
+- ~par-local-multi/local-access~
+
+Each of these versions contain a README that explains the rationale.
+
+* Prerequisites
+
+This project assumes that a C compiler is available, the ~convert~
+command from ImageMagick to create the input files, and two Chapel
+runtimes of Chapel 1.19, one configured for single locale execution
+and one for multi-locale execution.
+
+More specifically, the Makefiles for Chapel have been configured to
+use the following configurations (can be overridden by setting the
+environment variable RT_FLAGS):
+
+For the single-locale runtime:
+
+#+begin_src sh
+CHPL_LAUNCHER=slurm-sbatch
+#+end_src
+
+For the multi-locale runtime:
+
+#+begin_src sh
+CHPL_LAUNCHER=slurm-gasnetrun_ibv
+CHPL_COMM=gasnet
+CHPL_COMM_SUBSTRATE=ibv
+#+end_src
+
+The 'stage 2' versions may use different run times.  The Makefiles
+contain a flag ~RT_FLAGS~ that should also be used to build the run
+time of Chapel.
+
+* Running the versions
+
+This project assumes that the environment variable
+HEAT_DISSIPATION_CHAPEL has been set to the directory that contains
+this README:
+
+#+begin_src sh
+export HEAT_DISSIPATION_CHAPEL=/path/to/this/dir
+#+end_src
+
+To run the versions of the code, it is necessary to create the input
+data first.  Currently, we use the files ~plasma_8192x8192.pgm~ and
+~pat2_8192x8192.pgm~, that can be obtained using the following
+commands:
+
+#+begin_src sh
+cd $HEAT_DISSIPATION_CHAPEL/images
+make plasma_8192x8192.pgm
+make pat2_8192x8192.pgm
+#+end_src
+
+Please note that creating these images is not deterministic, which
+means that runs of the various versions in this code should produce
+the same output with the exact same input files.  However, if the
+input files are recreated with the above commands, the output will
+most likely be different from the output with the previous input
+files.
+
+We can now go into one of the versions in directories ~c~ or ~chapel~
+and perform the following to build the binary:
+
+#+begin_src sh
+make
+#+end_src
+
+To run the program, we can use:
+
+#+begin_src sh
+./run
+#+end_src
+
+To control the threads for single-locale versions:
+
+#+begin_src sh
+./run --dataParTasksPerLocale=8
+#+end_src
+
+Or for multi-locale versions:
+
+#+begin_src sh
+./run -nl 2
+#+end_src
+
+Some of the stage 2 versions have a separate run command because jobs
+are launched in a different way:
+
+#+begin_src sh
+./chpl2cluster -nl 2
+#+end_src
+* License
+
+This code is released under Apache License 2.0.
+
+* Copyright
+
+Copyright 2019 Vrije Universiteit Amsterdam, University of Amsterdam, Per Fuchs.
+
+* References
+
+Per Fuchs, Pieter Hijma, Clemens Grelck.  Implementing Stencil Problems in
+Chapel: An Experience Report.  CHIUW '19, Phoenix Arizona

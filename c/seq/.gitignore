@@ -1,0 +1,4 @@
+heat_dissipation
+heat_dissipation.o
+util.o
+*.out

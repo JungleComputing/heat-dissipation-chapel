@@ -1,0 +1,3 @@
+This version uses the fast segment of GASNet's ibv conduit.  Unfortunately this
+version used an MPI-based launcher that limits the number of cores to 1 per
+node.

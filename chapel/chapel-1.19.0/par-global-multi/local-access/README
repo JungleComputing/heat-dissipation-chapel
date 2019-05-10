@@ -1,0 +1,1 @@
+In this version we replace the local block with .localAccess[] expressions.

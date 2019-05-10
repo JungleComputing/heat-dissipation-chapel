@@ -1,0 +1,1 @@
+../separate-reduce/heat_dissipation.c

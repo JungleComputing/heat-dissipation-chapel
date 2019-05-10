@@ -1,0 +1,13 @@
+#!/bin/bash
+#SBATCH --time=00:15:00
+
+#. /etc/bashrc
+#. /etc/profile.d/modules.sh
+#module load openmpi/gcc/64/1.10.3
+
+. $HOME/.bashrc
+
+APP=./run
+ARGS="$*"
+
+$APP $ARGS

@@ -1,0 +1,7 @@
+This version adds the --cache-remote flag.  The program contains a distributed
+array wrapped in an object to be able to do a pointer swap.  One of the
+hypotheses is that a remote access is expensive because the object that resides
+on the main locale must be accessed each time.  This flag can make this pattern
+perform better.
+
+This flag does not appear to improve the performance.

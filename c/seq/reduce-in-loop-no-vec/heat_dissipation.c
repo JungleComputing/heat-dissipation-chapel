@@ -1,0 +1,1 @@
+../reduce-in-loop/heat_dissipation.c
