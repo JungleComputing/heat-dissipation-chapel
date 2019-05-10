@@ -1,7 +1,7 @@
 {
     "description": "Heat Dissipation written in Chapel as part of the Chapel Implementers and Users Workshop (CHIUW '19)",
     "license": "Apache-2.0",
-    "title": "heat-dissipation-chapel",
+    "title": "Heat Dissipation in Chapel",
     "upload_type": "software",
     "creators": [{
             "affiliation": "Vrije Universiteit Amsterdam",
